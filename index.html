@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vantage Terminal | FX Intelligence</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="icon.jpeg" type="image/x-icon">
+    <script src="script.js"defer></script>
+</head>
+<body class="dark-mode">
+
+<div class="container">
+    <div class="sidebar">
+        <div class="card">
+            <div class="card-title">
+                <span><i class="fas fa-microchip"></i> CONVERSION ENGINE</span>
+                <i class="fas fa-moon theme-toggle" id="theme-toggle" style="cursor:pointer"></i>
+            </div>
+            
+            <div class="input-group">
+                <label>Amount</label>
+                <input type="number" id="amount" value="1000">
+            </div>
+
+            <div class="currency-row">
+                <div class="input-group">
+                    <label>Base</label>
+                    <div id="from-wrapper" class="custom-select-wrapper">
+                        <select id="from-curr"></select>
+                    </div>
+                </div>
+                
+                <div class="swap-circle" id="swap-btn"><i class="fas fa-exchange-alt"></i></div>
+                
+                <div class="input-group">
+                    <label>Quote</label>
+                    <div id="to-wrapper" class="custom-select-wrapper">
+                        <select id="to-curr"></select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Service Cost: <span id="fee-val">0.5%</span></label>
+                <input type="range" id="fee-slider" min="0" max="50" step="0.1" value="0.5">
+            </div>
+
+            <div id="result-display">
+                <p style="font-size: 0.7rem; font-weight: 700; color: var(--text-muted); margin-bottom: 5px;">ESTIMATED CONVERSION</p>
+                <h3 id="final-res">0.00</h3>
+            </div>
+
+            <button class="btn-main" id="calc-btn">GET EXCHANGE RATE</button>
+        </div>
+
+        <div class="card">
+            <div class="card-title"><span><i class="fas fa-layer-group"></i> ASSET WATCHLIST</span></div>
+            <div id="fav-list"></div>
+            <button class="btn-main" id="save-fav" style="background:transparent; color:var(--primary); border: 1.5px solid var(--primary); margin-top:10px; font-size:0.75rem">
+                <i class="fas fa-thumbtack"></i> PIN CURRENT PAIR
+            </button>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="card">
+            <div class="card-title"><span><i class="fas fa-chart-line"></i> REAL-TIME MARKET HEATMAP</span></div>
+            <div class="trend-grid" id="market-trends"></div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">
+                <span><i class="fas fa-broadcast-tower"></i> MACRO INTELLIGENCE FEED</span>
+                <i class="fas fa-sync-alt" id="news-refresh" style="cursor:pointer"></i>
+            </div>
+            <div id="news-feed"></div>
+            <button id="load-more-news">View More</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>
