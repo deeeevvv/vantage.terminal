@@ -35,24 +35,90 @@
             -ms-overflow-style: none; 
             scrollbar-width: none; 
             background: var(--bg); 
-            color: var(--text-main); 
-            padding: 20px; 
+            color: var(--text-main);
+            padding: 0; 
             transition: all 0.4s ease;
             overflow-x: hidden; 
             min-height: 100vh;
-            display: flex; /* Helps vertically center if needed, but mainly for stability */
+            display: flex;
             flex-direction: column;
         }
 
-        /* --- RESPONSIVE CENTERED CONTAINER --- */
+        /* --- HEADER STYLES --- */
+        header {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            padding: 18px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: var(--text-main);
+        }
+        
+        .brand i { color: var(--primary); font-size: 1.3rem; }
+
+        /* --- FOOTER STYLES --- */
+        footer {
+            margin-top: auto; 
+            background: var(--card-bg);
+            border-top: 1px solid var(--border);
+            padding: 40px;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .footer-links a:hover { color: var(--primary); }
+        
+        .copyright { color: var(--text-muted); font-size: 0.85rem; }
+
+        @media (max-width: 768px) {
+            header, footer { padding: 20px; }
+            .copyright{font-size: 0.78rem;}
+            .brand {font-size: 0.9rem; gap: 10px;}
+            .brand i{font-size: 1.1rem;}
+            .footer-content { flex-direction: column; text-align: center; gap: 10px; }
+            .footer-links a { margin: 0 10px; font-size: 0.61rem; gap: 10px;}
+        }
+
+
         .container { 
             max-width: 1400px; 
             width: 100%;
-            margin: 0 auto; /* Horizontal Centering */
+            margin: 30px auto; 
             display: grid; 
             grid-template-columns: 420px 1fr; 
             gap: 25px; 
-            justify-content: center; /* Ensures grid stays centered */
+            padding: 0 20px; 
         }
 
         @media (max-width: 1100px) { 
@@ -60,8 +126,7 @@
         }
 
         @media (max-width: 600px) {
-            body { padding: 10px; }
-            .container { gap: 15px; }
+            .container { gap: 15px; margin: 15px auto; padding: 0 15px; }
         }
 
         .card {
@@ -105,11 +170,10 @@
             color: var(--text-main); background: var(--bg);
             border: 1px solid var(--border); border-radius: 12px;
             cursor: pointer; transition: all 0.3s;
-            height: 45px; /* Fixed height for consistency */
+            height: 45px; 
         }
         .custom-select-trigger:hover { border-color: var(--primary); }
 
-        /* FIX: Handle Long Text Inside Dropdown */
         .custom-select-trigger > div {
             display: flex; align-items: center; overflow: hidden; white-space: nowrap; flex: 1;
         }
@@ -158,7 +222,6 @@
         /* --- SYMMETRICAL CURRENCY ROW --- */
         .currency-row { 
             display: grid; 
-            /* minmax(0, 1fr) ensures columns are equal width regardless of content length */
             grid-template-columns: minmax(0, 1fr) 50px minmax(0, 1fr); 
             gap: 12px; 
             align-items: flex-end; 
@@ -172,7 +235,6 @@
         .swap-circle:hover { transform: rotate(180deg); background: var(--primary-hover); }
 
         @media (max-width: 480px) {
-            /* Keep symmetry on mobile too */
             .currency-row { grid-template-columns: minmax(0, 1fr) 40px minmax(0, 1fr); gap: 8px; }
             .swap-circle { width: 40px; height: 40px; margin-bottom: 22px; font-size: 0.8rem; }
         }
@@ -184,7 +246,6 @@
         }
         #result-display h1 { font-size: 2.4rem; color: var(--primary); font-weight: 800; letter-spacing: -1px; word-break: break-all; }
 
-        /* --- TRENDS --- */
         .trend-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 12px; }
         .trend-card {
             background: var(--glass); padding: 15px; border-radius: 16px; border: 1px solid var(--border);
@@ -209,33 +270,19 @@
             background: #111; border: 1px solid var(--border); flex-shrink: 0;
         }
 
-        /* Mobile News Tweaks */
         @media (max-width: 600px) {
             .news-article { 
-                padding: 12px; 
-                gap: 12px; 
-                align-items: flex-start;
+                padding: 12px; gap: 12px; align-items: flex-start;
                 border: 1px solid var(--border);
             }
             .news-article:hover { transform: none; }
-            
-            .news-article img { 
-                width: 90px; 
-                height: 70px; 
-                border-radius: 8px;
-            }
+            .news-article img { width: 90px; height: 70px; border-radius: 8px; }
             .news-content h4 { 
-                font-size: 0.8rem !important; 
-                line-height: 1.3; 
-                margin-bottom: 6px !important;
-                display: -webkit-box;
-                -webkit-line-clamp: 3;
-                -webkit-box-orient: vertical;
-                overflow: hidden;
+                font-size: 0.8rem !important; line-height: 1.3; margin-bottom: 6px !important;
+                display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
             }
-            .news-content div { 
-                font-size: 0.65rem !important; 
-            }
+            .news-content div { font-size: 0.65rem !important; }
+            .content{margin-top: -14.5px;}
         }
 
         #load-more-news {

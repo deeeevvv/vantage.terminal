@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Sources | Vantage Terminal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="shortcut icon" href="icon.jpeg" type="image/x-icon">
+    
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --bg: #f8fafc;
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            --glass: rgba(255, 255, 255, 0.7);
+        }
+
+        body.dark-mode {
+            --primary: #818cf8;
+            --bg: #030712;
+            --card-bg: rgba(17, 24, 39, 0.9);
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --border: #1f2937;
+            --shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+            --glass: rgba(31, 41, 55, 0.7);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        ::-webkit-scrollbar { display: none; }
+        
+        body { 
+            background: var(--bg); 
+            color: var(--text-main); 
+            transition: all 0.4s ease;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- HEADER --- */
+        header {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            padding: 18px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .brand a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: var(--text-main);
+            text-decoration: none;
+        }
+        
+        .brand i { color: var(--primary); font-size: 1.3rem; }
+
+        /* --- CONTENT LAYOUT --- */
+        .legal-container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+            width: 100%;
+            flex: 1;
+        }
+
+        .legal-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: var(--shadow);
+        }
+        .legal-card a { color: var(--primary); text-decoration: none; font-weight: 500; }
+        .legal-card a:hover { text-decoration: underline; }
+
+        h3 { font-size: 1.45rem; color: var(--primary); margin-bottom: 10px; }
+        h4 { font-size: 0.95rem; margin-top: 30px; margin-bottom: 15px; color: var(--text-main); display: flex; align-items: center; gap: 10px; }
+        p { color: var(--text-muted); line-height: 1.7; margin-bottom: 15px; font-size: 0.75rem; }
+        
+        ul { margin-left: 20px; margin-bottom: 20px; color: var(--text-muted); font-size: 0.8rem; }
+        li { margin-bottom: 10px; line-height: 1.6; }
+
+        /* --- FOOTER --- */
+        footer {
+            margin-top: auto;
+            background: var(--card-bg);
+            border-top: 1px solid var(--border);
+            padding: 40px;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .footer-links a:hover { color: var(--primary); }
+        .copyright { color: var(--text-muted); font-size: 0.85rem; }
+
+        @media (max-width: 768px) {
+            header, footer { padding: 20px; }
+            .legal-card { padding: 25px; }
+            .footer-content { flex-direction: column; text-align: center; gap: 10px;}
+            .footer-links a { margin: 0 10px; font-size: 0.61rem;}
+            .copyright{font-size: 0.75rem;}
+            .brand a{font-size: 0.9rem; gap: 10px;}
+            .brand i{font-size: 1.1rem;}
+        }
+    </style>
+</head>
+<body class="dark-mode">
+
+    <header>
+        <div class="brand">
+            <a href="index.html">
+                <i class="fas fa-layer-group"></i>
+                <span>VANTAGE TERMINAL</span>
+            </a>
+        </div>
+        <i class="fas fa-moon theme-toggle" id="theme-toggle" style="cursor:pointer; font-size: 1.2rem; color: var(--text-muted)"></i>
+    </header>
+
+    <div class="legal-container">
+        <div class="legal-card">
+            <h3>Technical Data Sources</h3>
+            <p>Transparency is core to the Vantage Terminal architecture. Below is a comprehensive list of the APIs and data streams that power our Conversion Engine and Macro Intelligence Feed.</p>
+
+            <h4><i class="fas fa-money-bill-wave"></i> Currency Exchange Rates</h4>
+            <p>Our Conversion Engine utilizes the <strong>ExchangeRate-API</strong>. This service aggregates data from multiple commercial sources and central banks to provide reliable mid-market exchange rates.</p>
+            <ul>
+                <li><strong>Provider:</strong> ExchangeRate-API</li>
+                <li><strong>Update Frequency:</strong> Real-time (Cached)</li>
+                <li><strong>Link:</strong> <a href="https://www.exchangerate-api.com/" target="_blank">View Official Documentation</a></li>
+            </ul>
+
+            <h4><i class="fas fa-newspaper"></i> Macro Intelligence Feed</h4>
+            <p>The news feed is a custom aggregation of RSS streams from <strong>Yahoo Finance</strong>, parsed via the <strong>RSS2JSON</strong> utility. We filter specifically for top financial stories and currency-specific updates.</p>
+            <ul>
+                <li><strong>Provider:</strong> Yahoo Finance (RSS)</li>
+                <li><strong>Aggregator:</strong> RSS2JSON API</li>
+                <li><strong>Link:</strong> <a href="https://finance.yahoo.com/" target="_blank">Yahoo Finance Homepage</a></li>
+            </ul>
+
+            <h4><i class="fas fa-robot"></i> AI Visual Engine</h4>
+            <p>When article thumbnails are unavailable, Vantage Terminal utilizes the <strong>Pollinations.ai</strong> generative engine to create context-aware financial imagery on the fly based on headline keywords.</p>
+            <ul>
+                <li><strong>Provider:</strong> Pollinations.ai</li>
+                <li><strong>Model Type:</strong> Real-time Generative Media</li>
+                <li><strong>Link:</strong> <a href="https://pollinations.ai/" target="_blank">Pollinations AI</a></li>
+            </ul>
+
+            <h4><i class="fas fa-globe"></i> Flag Assets</h4>
+            <p>All country and currency flag icons are served via the <strong>FlagCDN</strong> content delivery network.</p>
+            <ul>
+                <li><strong>Link:</strong> <a href="https://flagcdn.com/" target="_blank">FlagCDN</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="copyright">
+                © 2026 Vantage Terminal. Institutional FX Data.
+            </div>
+            <div class="footer-links">
+                <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+                <a href="terms.html"><i class="fas fa-file-contract"></i> Terms</a>
+                <a href="privacy.html"><i class="fas fa-shield-alt"></i> Privacy</a>
+                <a href="sources.html" style="color:var(--primary)"><i class="fas fa-database"></i> News Sources</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const toggleBtn = document.getElementById('theme-toggle');
+            const body = document.body;
+
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                body.classList.remove('dark-mode');
+                toggleBtn.classList.replace('fa-moon', 'fa-sun');
+            }
+
+            // 2. Toggle Logic
+            toggleBtn.onclick = () => {
+                body.classList.toggle("dark-mode");
+                const isDark = body.classList.contains("dark-mode");
+                if (isDark) {
+                    toggleBtn.classList.replace('fa-sun', 'fa-moon');
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    toggleBtn.classList.replace('fa-moon', 'fa-sun');
+                    localStorage.setItem('theme', 'light');
+                }
+            };
+        });
+    </script>
+
+</body>
+</html>
