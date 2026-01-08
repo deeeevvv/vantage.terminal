@@ -9,6 +9,9 @@
     <link rel="shortcut icon" href="icon.jpeg" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1e1e1e">
+    <link rel="apple-touch-icon" href="icon.jpeg">
 </head>
 <body class="dark-mode">
 
@@ -102,6 +105,12 @@
             </div>
         </div>
     </footer>
-
+    <script>
+    if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./sw.js');
+    });
+  }
+   </script>
 </body>
 </html>
